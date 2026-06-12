@@ -70,3 +70,87 @@ script.js
 firebase.js
 
 Generate complete code for all files with comments and responsive design.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Study Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Study Recommendation System</h1>
+
+    <label>Exam Date:</label>
+    <input type="date" id="examDate">
+
+    <label>Subjects (comma separated):</label>
+    <textarea id="subjects" placeholder="Maths, Physics, C Programming"></textarea>
+
+    <label>Hours Available Per Day:</label>
+    <input type="number" id="hours">
+
+    <button onclick="generatePlan()">Generate Study Plan</button>
+
+    <div id="output"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:400px;
+    margin:50px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:blue;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+#output{
+    margin-top:20px;
+    background:#e8f5e9;
+    padding:15px;
+}
+function generatePlan() {
+
+    let subjects = document.getElementById("subjects")
+                    .value.split(",");
+
+    let hours = document.getElementById("hours").value;
+
+    let output = "<h3>Recommended Study Plan</h3>";
+
+    subjects.forEach((subject,index)=>{
+
+        output += `
+        <p>
+        Day ${index+1}: Study <b>${subject.trim()}</b>
+        for ${hours} hours.
+        </p>
+        `;
+    });
+
+    document.getElementById("output").innerHTML = output;
+}
